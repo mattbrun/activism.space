@@ -15,20 +15,34 @@ function wpdm_print_cat_dropdown()
 function wpdm_common_actions()
 {
     $labels = array(
-        'name' => __('Downloads', 'wpdmpro'),
-        'singular_name' => __('File', 'wpdmpro'),
-        'add_new' => __('Add New', 'wpdmpro'),
-        'add_new_item' => __('Add New File', 'wpdmpro'),
-        'edit_item' => __('Edit File', 'wpdmpro'),
-        'new_item' => __('New File', 'wpdmpro'),
-        'all_items' => __('All Files', 'wpdmpro'),
-        'view_item' => __('View File', 'wpdmpro'),
-        'search_items' => __('Search Files', 'wpdmpro'),
-        'not_found' => __('No File Found', 'wpdmpro'),
-        'not_found_in_trash' => __('No Files found in Trash', 'wpdmpro'),
-        'parent_item_colon' => '',
-        'menu_name' => __('Downloads', 'wpdmpro')
-
+      /*
+      'name' => __('Downloads', 'wpdmpro'),
+      'singular_name' => __('File', 'wpdmpro'),
+      'add_new' => __('Add New', 'wpdmpro'),
+      'add_new_item' => __('Add New File', 'wpdmpro'),
+      'edit_item' => __('Edit File', 'wpdmpro'),
+      'new_item' => __('New File', 'wpdmpro'),
+      'all_items' => __('All Files', 'wpdmpro'),
+      'view_item' => __('View File', 'wpdmpro'),
+      'search_items' => __('Search Files', 'wpdmpro'),
+      'not_found' => __('No File Found', 'wpdmpro'),
+      'not_found_in_trash' => __('No Files found in Trash', 'wpdmpro'),
+      'parent_item_colon' => '',
+      'menu_name' => __('Downloads', 'wpdmpro')
+      */
+      'name' => __('Documents', 'wpdmpro'),
+      'singular_name' => __('Document', 'wpdmpro'),
+      'add_new' => __('Add New', 'wpdmpro'),
+      'add_new_item' => __('Add New Document', 'wpdmpro'),
+      'edit_item' => __('Edit Document', 'wpdmpro'),
+      'new_item' => __('New Document', 'wpdmpro'),
+      'all_items' => __('All Documents', 'wpdmpro'),
+      'view_item' => __('View Document', 'wpdmpro'),
+      'search_items' => __('Search Documents', 'wpdmpro'),
+      'not_found' => __('No Document Found', 'wpdmpro'),
+      'not_found_in_trash' => __('No Documents found in Trash', 'wpdmpro'),
+      'parent_item_colon' => '',
+      'menu_name' => __('Documents', 'wpdmpro')
     );
     $args = array(
         'labels' => $labels,
@@ -321,7 +335,7 @@ function DownloadLink(&$package, $embed = 0, $extras = array())
         if ($package['password'] != '') {
             $lock = 'locked';
             $data = '
-       
+
         <div id="msg_' .$unqid. '_'. $package['ID'] . '" style="display:none;" class="text-danger">processing...</div>
         <form id="wpdmdlf_' . $unqid . '_' . $package['ID'] . '" method=post action="' . home_url('/') . '" style="margin-bottom:0px;">
         <input type=hidden name="id" value="' . $package['ID'] . '" />
@@ -335,13 +349,13 @@ function DownloadLink(&$package, $embed = 0, $extras = array())
         <input type="password" class="form-control input-sm" placeholder="Enter Password" size="10" id="password_' . $unqid . '_' . $package['ID'] . '" name="password" />
         <span class="input-group-btn"><input style="margin-left:5px" id="wpdm_submit_' . $unqid . '_' . $package['ID'] . '" class="wpdm_submit btn btn-sm btn-warning" type="submit" value="' . __('Download', 'wpdmpro') . '" /></span>
             </div>
-        </form>        
-        
+        </form>
+
         <script type="text/javascript">
         jQuery("#wpdmdlf_' . $unqid . '_' . $package['ID'] . '").submit(function(){
 
             jQuery("#msg_' .$unqid. '_' . $package['ID'] . '").html("Processing...").show();
-            jQuery("#wpdmdlf_' . $unqid . '_' . $package['ID'] . '").hide();    
+            jQuery("#wpdmdlf_' . $unqid . '_' . $package['ID'] . '").hide();
 
             jQuery(this).removeClass("wpdm_submit").addClass("wpdm_submit_wait");
 
@@ -363,8 +377,8 @@ function DownloadLink(&$package, $embed = 0, $extras = array())
         });
         return false;
         });
-        </script> 
-         
+        </script>
+
         ';
         }
 
@@ -443,7 +457,7 @@ function wpdm_ddl_button($package, $icononly = false)
 {
     global $wpdb, $current_user;
     $label = $icononly ? "" : "Download Now";
-    //print_r($package);     
+    //print_r($package);
     $download_url = home_url("/?file={$package['ID']}");
     return "<a class='wpdm-gh-button wpdm-gh-icon arrowdown wpdm-gh-big' href='$download_url'>$label</a>";
 
@@ -646,8 +660,8 @@ function wpdm_query_var($var, $params = array())
 
     return $val;
 }
-        
-        
+
+
 function wpdm_validate_newpass_sk()
 {
     global $wp_query, $wpdb;
@@ -1957,4 +1971,3 @@ function wpdm_update_profile()
         die();
     }
 }
-
