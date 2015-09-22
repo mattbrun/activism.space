@@ -35,7 +35,7 @@
       <br/><br/><br/>
       <p>A project supported by the European Union</p>
       <img src="http://europa.eu/about-eu/basic-information/symbols/images/flag_yellow_low.jpg" alt="Europe flag" width="50"></img>
-      <p>This platform reflects only the views of the authors. The Commission cannot be held responsible for any use which may be made of the information and contents contained therein.</p>
+      <p><small>This platform reflects only the views of the authors. The Commission cannot be held responsible for any use which may be made of the information and contents contained therein.</small></p>
     </div>
 
   </div>
@@ -75,4 +75,3 @@
     <?php endif ?>
   </div>
 </div>
-
