@@ -74,7 +74,7 @@ if ( !class_exists( 'APSS_Class' ) ) {
 			add_action( 'admin_post_apss_clear_cache', array( $this, 'apss_clear_cache' ) ); //clear the cache of the social share counter.
 			add_shortcode( 'apss-share', array( $this, 'apss_shortcode' ) ); //adds a shortcode
 			add_shortcode( 'apss-count', array( $this, 'apss_count_shortcode' ) ); //adds a share count shortcode
-			add_action( 'add_meta_boxes', array( $this, 'social_meta_box' ) ); //for providing the option to disable the social share option in each frontend page
+			//add_action( 'add_meta_boxes', array( $this, 'social_meta_box' ) ); //for providing the option to disable the social share option in each frontend page
 			add_action( 'save_post', array( $this, 'save_meta_values' ) ); //function to save the post meta values of a plugin.
 
 			add_action( 'wp_ajax_nopriv_frontend_counter', array( $this, 'frontend_counter' ) ); //fetching of the social share count.
