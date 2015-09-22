@@ -97,9 +97,23 @@ if ( function_exists('get_site_option') ) {
 <div class="clear"></div></div><!-- wpwrap -->
 <script type="text/javascript">if(typeof wpOnload=='function')wpOnload();</script>
 <script type="text/javascript">		<!-- activism.space -->
-	document.getElementById("wpdmcategorydiv").style.display = "none";
-	document.getElementById("wpdm-settings").style.display = "none";
-	document.getElementById("wpdm-items").style.display = "none";
+	var el = document.getElementById("categorydiv");
+	if (el) { el.style.display = "none"; }
+
+	el = document.getElementById("donation");
+	if (el) { el.style.display = "none"; }
+
+	el = document.getElementById("wpdmcategorydiv");
+	if (el) { el.style.display = "none"; }
+
+	el = document.getElementById("wpdm-settings");
+	if (el) { el.style.display = "none"; }
+
+	el = document.getElementById("wpdm-items");
+	if (el) { el.style.display = "none"; }
+
+	el = document.getElementById("tribe_events_catdiv");
+	if (el) { el.style.display = "none"; }
 </script>
 </body>
 </html>
