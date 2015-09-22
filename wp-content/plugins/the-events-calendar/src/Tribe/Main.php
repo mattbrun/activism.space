@@ -3964,6 +3964,7 @@ if ( ! class_exists( 'Tribe__Events__Main' ) ) {
 						'parent' => 'tribe-events',
 					)
 				);
+				/*
 				if ( current_user_can( 'edit_tribe_events' ) ) {
 					$wp_admin_bar->add_group(
 						array(
@@ -3972,6 +3973,7 @@ if ( ! class_exists( 'Tribe__Events__Main' ) ) {
 						)
 					);
 				}
+				*/
 
 				$wp_admin_bar->add_menu(
 					array(
@@ -4005,6 +4007,7 @@ if ( ! class_exists( 'Tribe__Events__Main' ) ) {
 				}
 
 				if ( current_user_can( 'publish_tribe_events' ) ) {
+					/*
 					$import_node = $wp_admin_bar->get_node( 'tribe-events-import' );
 					if ( ! is_object( $import_node ) ) {
 						$wp_admin_bar->add_menu(
@@ -4015,6 +4018,7 @@ if ( ! class_exists( 'Tribe__Events__Main' ) ) {
 							)
 						);
 					}
+					*/
 					$wp_admin_bar->add_menu(
 						array(
 							'id'     => 'tribe-csv-import',
