@@ -222,6 +222,7 @@ if ( class_exists( 'Eventbrite_for_TribeEvents' ) ) {
 	do_action( 'tribe_events_details_table_bottom', $event->ID, true );
 	?>
 
+	<!--
 	<table id="event_cost" class="eventtable">
 		<?php if ( tribe_events_admin_show_cost_field() ) : ?>
 			<tr>
@@ -275,6 +276,7 @@ if ( class_exists( 'Eventbrite_for_TribeEvents' ) ) {
 		do_action( 'tribe_events_cost_table', $event->ID, true );
 		?>
 	</table>
+  -->
 
 </div>
 <?php
