@@ -20,7 +20,7 @@ function post_submit_meta_box($post, $args = array() ) {
 ?>
 <div class="submitbox" id="submitpost">
 
-<div id="minor-publishing">
+<div id="minor-publishing" style="display: none;">
 
 <?php // Hidden submit button early on so that the browser chooses the right button when form is submitted with Return key ?>
 <div style="display:none;">
