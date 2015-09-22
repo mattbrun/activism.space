@@ -3575,12 +3575,14 @@ if ( ! class_exists( 'Tribe__Events__Main' ) ) {
 					'EventsChooserBox',
 				), self::POSTTYPE, 'normal', 'high'
 			);
+			/*
 			add_meta_box(
 				'tribe_events_event_options', sprintf( __( '%s Options', 'the-events-calendar' ), $this->singular_event_label ), array(
 					$this,
 					'eventMetaBox',
 				), self::POSTTYPE, 'side', 'default'
 			);
+			*/
 
 			add_meta_box(
 				'tribe_events_venue_details', sprintf( __( '%s Information', 'the-events-calendar' ), $this->singular_venue_label ), array(
