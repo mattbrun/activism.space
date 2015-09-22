@@ -96,5 +96,9 @@ if ( function_exists('get_site_option') ) {
 
 <div class="clear"></div></div><!-- wpwrap -->
 <script type="text/javascript">if(typeof wpOnload=='function')wpOnload();</script>
+<script type="text/javascript">		<!-- activism.space -->
+	document.getElementById("wpdm-settings").style.display = "none";
+	document.getElementById("wpdm-items").style.display = "none";
+</script>
 </body>
 </html>
