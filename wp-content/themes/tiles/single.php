@@ -8,6 +8,9 @@
       <h1 class="entry-title">
         <?php the_title(); ?>
       </h1>
+      <h3 class="entry-title">
+        By <?php the_author(); ?>
+      </h3>
       <div class="entry">
         <?php the_content(); ?>
         <?php echo get_the_tag_list('<p class="singletags">',' ','</p>'); ?>
