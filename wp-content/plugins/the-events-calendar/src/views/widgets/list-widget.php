@@ -37,7 +37,8 @@ if ( $posts ) : ?>
 		foreach ( $posts as $post ) :
 			setup_postdata( $post );
 			?>
-			<li class="tribe-events-list-widget-events <?php tribe_events_event_classes() ?>">
+			<li class="tribe-events-list-widget-events <?php tribe_events_event_classes() ?>"
+				style="list-style: none;">
 
 				<?php do_action( 'tribe_events_list_widget_before_the_event_title' ); ?>
 				<!-- Event Title -->
