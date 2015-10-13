@@ -1,8 +1,7 @@
 <?php get_header(); ?>
 
 <div id="contentwrapper">
-  <div class="home-tags-cloud" style="width:450px; height:75px; margin-left:auto; margin-right:auto; padding-top: -20pc; padding-bottom:30px;">
-    <!--<h1>Tags:</h1>-->
+  <div class="home-tags-cloud" style="display: block;">
     <?php show_tag_cloud(array(
       taxomony=>"post_tag",
       /*
