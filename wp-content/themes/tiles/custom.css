@@ -253,7 +253,8 @@ p.form-allowed-tags {
 .grid li {
 	display: inline-block;
 	overflow: hidden;
-	width: 314px;
+	/*width: 314px;*/
+	width: 245px;
 	text-align: left;
 	vertical-align: top;
 }
