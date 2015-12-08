@@ -1,10 +1,10 @@
 ﻿=== AccessPress Social Share ===
 Contributors: Access Keys
-Tags: social share counter, social share, social media share, social network share, social media, social network, share counter, social share count, social url share, social icons 
+Tags: social share counter, social share, social media share, social network share, social media, social network, share counter, social share count, social url share, social icons
 Donate link: http://accesspressthemes.com/donation/
 Requires at least: 3.8
-Tested up to: 4.2
-Stable tag: 3.0.4
+Tested up to: 4.3
+Stable tag: 4.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -131,6 +131,29 @@ Yes. You can use the AccessPress social share by using shortcode anywhere you wa
 6. Backend Miscellaneous Settings Section
 
 == Changelog ==
+= 4.0.1 =
+* Removal of the twitter share count as twitter depreceate the url share count.
+
+= 4.0.0 =
+* Changed the priority level of the_content filter to make the plugin compactible with Visual Composer.
+
+= 3.0.9 =
+* Removal of unnecessary css from both frontend css and backend css.
+
+= 3.0.8 =
+* Addition of the header_sent method checking in the plugin's main class for the session start.
+
+= 3.0.7 =
+* Removal of the ajax call for the share counter as it is causing problem if there is jquery error in a site.
+
+= 3.0.6 =
+* Done the text domain change.
+* Done the removal of the submenu page from the plugin.
+
+= 3.0.5 =
+* Changed the input type of cache period to number.
+* Done the sanitization of the input texts fields in plugin backend.
+
 = 3.0.4 =
 * Code formatting for the save settings page.
 * Done the broken link fixes for the about section.

@@ -4,10 +4,10 @@ defined( 'ABSPATH' ) or die( "No script kiddies please!" );
   Plugin name: AccessPress Social Share
   Plugin URI: https://accesspressthemes.com/wordpress-plugins/accesspress-social-share/
   Description: A plugin to add various social media shares to a site with dynamic configuration options.
-  Version: 3.0.4
+  Version: 4.0.1
   Author: AccessPress Themes
   Author URI: http://accesspressthemes.com
-  Text Domain:apss-share
+  Text Domain: accesspress-social-share
   Domain Path: /languages/
   License: GPLv2 or later
  */
@@ -30,11 +30,11 @@ if ( !defined( 'APSS_LANG_DIR' ) ) {
 }
 
 if ( !defined( 'APSS_VERSION' ) ) {
-	define( 'APSS_VERSION', '3.0.4' );
+	define( 'APSS_VERSION', '4.0.1' );
 }
 
 if ( !defined( 'APSS_TEXT_DOMAIN' ) ) {
-	define( 'APSS_TEXT_DOMAIN', 'apss-share' );
+	define( 'APSS_TEXT_DOMAIN', 'accesspress-social-share' );
 }
 
 if ( !defined( 'APSS_SETTING_NAME' ) ) {
@@ -60,7 +60,7 @@ if ( !class_exists( 'APSS_Class' ) ) {
 			add_action( 'init', array( $this, 'plugin_text_domain' ) ); //load the plugin text domain
 			add_action( 'init', array( $this, 'session_init' ) ); //start the session if not started yet.
 			add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_assets' ) ); //registers all the assets required for wp-admin
-			add_filter( 'the_content', array( $this, 'apss_the_content_filter' ) ); // add the filter function for display of social share icons in frontend
+			add_filter( 'the_content', array( $this, 'apss_the_content_filter' ), 12 ); // add the filter function for display of social share icons in frontend //added 12 priority level at the end to make the plugin compactible with Visual Composer.
 
 			if ( isset( $this->apss_settings['disable_frontend_assets'] ) && $this->apss_settings['disable_frontend_assets'] != '1' ) {
 				add_action( 'wp_enqueue_scripts', array( $this, 'register_frontend_assets' ) ); //registers all the assets required for the frontend
@@ -74,7 +74,7 @@ if ( !class_exists( 'APSS_Class' ) ) {
 			add_action( 'admin_post_apss_clear_cache', array( $this, 'apss_clear_cache' ) ); //clear the cache of the social share counter.
 			add_shortcode( 'apss-share', array( $this, 'apss_shortcode' ) ); //adds a shortcode
 			add_shortcode( 'apss-count', array( $this, 'apss_count_shortcode' ) ); //adds a share count shortcode
-			//add_action( 'add_meta_boxes', array( $this, 'social_meta_box' ) ); //for providing the option to disable the social share option in each frontend page
+			add_action( 'add_meta_boxes', array( $this, 'social_meta_box' ) ); //for providing the option to disable the social share option in each frontend page
 			add_action( 'save_post', array( $this, 'save_meta_values' ) ); //function to save the post meta values of a plugin.
 
 			add_action( 'wp_ajax_nopriv_frontend_counter', array( $this, 'frontend_counter' ) ); //fetching of the social share count.
@@ -95,12 +95,12 @@ if ( !class_exists( 'APSS_Class' ) ) {
 
 		//loads the text domain for translation
 		function plugin_text_domain() {
-			load_plugin_textdomain( APSS_TEXT_DOMAIN, false, APSS_LANG_DIR );
+			load_plugin_textdomain( 'accesspress-social-share', false, APSS_LANG_DIR );
 		}
 
 		//starts the session with the call of init hook
 		function session_init() {
-			if ( !session_id() ) {
+			if ( !session_id() && !headers_sent() ) {
 				session_start();
 			}
 		}
@@ -110,7 +110,7 @@ if ( !class_exists( 'APSS_Class' ) ) {
 			/**
 			 * Backend CSS
 			 * */
-			if ( isset( $_GET['page'] ) && $_GET['page'] == 'apss-share' ) {
+			if ( isset( $_GET['page'] ) && $_GET['page'] == 'accesspress-social-share' ) {
 				wp_enqueue_style( 'aps-admin-css', APSS_CSS_DIR . '/backend.css', false, APSS_VERSION ); //registering plugin admin css
 				wp_enqueue_style( 'fontawesome-css', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css', false, APSS_VERSION );
 
@@ -200,8 +200,8 @@ if ( !class_exists( 'APSS_Class' ) ) {
 
 		//add plugins menu in backend
 		function add_apss_menu() {
-			add_menu_page( 'AccessPress Social Share', 'AccessPress Social Share', 'manage_options', 'apss-share', array( $this, 'main_page' ), APSS_IMAGE_DIR . '/apss-icon.png' );
-			add_submenu_page( 'apss-share', __( 'Social Icons Settings', APSS_TEXT_DOMAIN ), __( 'Social Icons Settings', APSS_TEXT_DOMAIN ), 'manage_options', 'apss-share', array( $this, 'main_page' ) );
+			add_menu_page( 'AccessPress Social Share', 'AccessPress Social Share', 'manage_options', 'accesspress-social-share', array( $this, 'main_page' ), APSS_IMAGE_DIR . '/apss-icon.png' );
+			//add_submenu_page( 'accesspress-social-share', __( 'SAccessPress Social Share', 'accesspress-social-share' ), __( 'Social Icons Settings', 'accesspress-social-share' ), 'manage_options', 'accesspress-social-share', array( $this, 'main_page' ) );
 		}
 
 		//for saving the plugin settings
@@ -219,8 +219,8 @@ if ( !class_exists( 'APSS_Class' ) ) {
 			if ( !empty( $_GET ) && wp_verify_nonce( $nonce, 'apss-restore-default-settings-nonce' ) ) {
 				//restore the default plugin activation settings from the activation page.
 				include( 'inc/backend/activation.php' );
-				$_SESSION['apss_message'] = __( 'Settings restored Successfully.', APSS_TEXT_DOMAIN );
-				wp_redirect( admin_url() . 'admin.php?page=apss-share' );
+				$_SESSION['apss_message'] = __( 'Settings restored Successfully.', 'accesspress-social-share' );
+				wp_redirect( admin_url() . 'admin.php?page=accesspress-social-share' );
 				exit;
 			} else {
 				die( 'No script kiddies please!' );
@@ -242,8 +242,8 @@ if ( !class_exists( 'APSS_Class' ) ) {
 				foreach ( $transient_array as $transient ) {
 					delete_transient( $transient );
 				}
-				$_SESSION['apss_message'] = __( 'Cache cleared Successfully', APSS_TEXT_DOMAIN );
-				wp_redirect( admin_url() . 'admin.php?page=apss-share' );
+				$_SESSION['apss_message'] = __( 'Cache cleared Successfully', 'accesspress-social-share' );
+				wp_redirect( admin_url() . 'admin.php?page=accesspress-social-share' );
 			}
 		}
 
@@ -300,7 +300,7 @@ if ( !class_exists( 'APSS_Class' ) ) {
 			wp_nonce_field( 'save_meta_values', 'ap_share_meta_nonce' );
 			$content_flag = get_post_meta( $post->ID, 'apss_content_flag', true );
 			?>
-			<label><input type="checkbox" value="1" name="apss_content_flag" <?php checked( $content_flag, true ) ?>/><?php _e( 'Hide share icons in content', APSS_TEXT_DOMAIN ); ?></label><br>
+			<label><input type="checkbox" value="1" name="apss_content_flag" <?php checked( $content_flag, true ) ?>/><?php _e( 'Hide share icons in content', 'accesspress-social-share' ); ?></label><br>
 			<?php
 		}
 
