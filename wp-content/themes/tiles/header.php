@@ -31,6 +31,7 @@
   <div id="mainmenu">
     <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'mainnav' ) ); ?>
 
+    <!-- activism space -->
     <div>
       <br/><br/><br/>
       <p>A project supported by the European Union</p>
@@ -75,3 +76,4 @@
     <?php endif ?>
   </div>
 </div>
+
