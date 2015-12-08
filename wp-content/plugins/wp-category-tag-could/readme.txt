@@ -4,7 +4,7 @@ Donate link: http://benohead.com/donate/
 Tags: 3d, cat, category, categories, cloud, configurable, cumulus, html5, javascript, sphere, tag, tags, tag-cloud, taxonomy, widget
 Requires at least: 3.0.1
 Tested up to: 4.1
-Stable tag: 1.6
+Stable tag: 1.7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -104,7 +104,7 @@ The easiest way to get to the code you need to write is to first create a new po
 
 Let's assume this is the shortcode which was generated:
 
-        [showtagcloud taxomony="category", format="array", number="20", color="#FF5800", background="FFFFFF"]
+        [showtagcloud taxonomy="category" format="array" number="20" color="#FF5800" background="FFFFFF"]
 
 Since the arguments of the shortcode are the same arguments as the ones of the show_tag_cloud() function, you can then copy them. So in the example above copy the following: taxomony="category", format="array", number="20", color="#FF5800", background="FFFFFF"
 
@@ -159,6 +159,15 @@ Of course if you want to style it differently (e.g. center it and specify a widt
 5. Horizontal bars
 
 == Changelog ==
+
+= 1.7.1 =
+
+* Allows empty widget titles
+
+= 1.7 =
+
+* Removed calls to error_log
+* Fixed example for short code
 
 = 1.6 =
 

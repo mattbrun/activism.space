@@ -11,7 +11,7 @@ if ( ! class_exists( 'WordPress_Category_Tag_Cloud' ) ) {
 		protected $modules;
 		protected $modified_types = array();
 
-		const VERSION = '1.6';
+		const VERSION = '1.7.1';
 		const PREFIX = 'wpctc_';
 		const DEBUG_MODE = false;
 
@@ -90,11 +90,6 @@ if ( ! class_exists( 'WordPress_Category_Tag_Cloud' ) ) {
 				self::VERSION,
 				'all'
 			);
-
-			error_log("bla=".print_r(WPCTC_Settings::get_instance()->settings['general']['do-not-load-scripts'], true));
-			error_log("bla=".(!isset(WPCTC_Settings::get_instance()->settings['general']) ? "true" : "false"));
-			error_log("bla=".(!isset(WPCTC_Settings::get_instance()->settings['general']['do-not-load-scripts']) ? "true" : "false"));
-			error_log("bla=".(WPCTC_Settings::get_instance()->settings['general']['do-not-load-scripts'] != 1 ? "true" : "false"));
 
 			if ( is_admin() ) {
 				wp_enqueue_style( 'farbtastic' );

@@ -27,6 +27,8 @@ class WPCTC_Widget extends WP_Widget
      */
     private function get_child_categories($cat_id)
     {
+        $category_list = array();
+
         $args = array(
             'type' => 'post',
             'child_of' => $cat_id,
@@ -38,14 +40,11 @@ class WPCTC_Widget extends WP_Widget
         );
         $child_categories = get_categories($args);
 
-        $category_list = array();
-
         if (!empty ($child_categories)) {
             foreach ($child_categories as $child_category) {
                 $category_list[] = $child_category->term_id;
             }
         }
-
         return $category_list;
     }
 
@@ -58,8 +57,10 @@ class WPCTC_Widget extends WP_Widget
     {
         $category_list = array();
         foreach ($categories as $cat_id) {
-            $category_list[] = $cat_id;
-            $category_list = array_merge($category_list, $this->get_child_categories($cat_id));
+            if (!empty($cat_id)) {
+                $category_list[] = $cat_id;
+                $category_list = array_merge($category_list, $this->get_child_categories($cat_id));
+            }
         }
 
         return $category_list;
@@ -151,7 +152,7 @@ class WPCTC_Widget extends WP_Widget
                     $from = $from . " INNER JOIN $wpdb->term_relationships as tr_" . $custom_taxonomy->name . " ON posts.ID = tr_" . $custom_taxonomy->name . ".object_ID "
                         . " INNER JOIN $wpdb->term_taxonomy as tt_" . $custom_taxonomy->name . " ON tr_" . $custom_taxonomy->name . ".term_taxonomy_id = tt_" . $custom_taxonomy->name . ".term_taxonomy_id ";
                     $where = $where . " AND tt_" . $custom_taxonomy->name . ".taxonomy = '" . $custom_taxonomy->name . "'" .
-                        " AND tt_" . $custom_taxonomy->name . ".term_id IN (" . implode(",", $instance[$custom_taxonomy->name . '_id']) . ") ";
+                        " AND tt_" . $custom_taxonomy->name . ".term_id IN (" . str_replace(",,", ",", implode(",", $instance[$custom_taxonomy->name . '_id'])) . ") ";
                 }
             }
         }
@@ -159,18 +160,18 @@ class WPCTC_Widget extends WP_Widget
         if (isset($instance['category_id']) && count($instance['category_id']) > 0) {
             $from = $from . " INNER JOIN $wpdb->term_relationships as tr1 ON posts.ID = tr1.object_ID
 				INNER JOIN $wpdb->term_taxonomy as tt1 ON tr1.term_taxonomy_id = tt1.term_taxonomy_id ";
-            $where = $where . " AND tt1.taxonomy = 'category' AND tt1.term_id IN (" . implode(",", $instance['category_id']) . ") ";
+            $where = $where . " AND tt1.taxonomy = 'category' AND tt1.term_id IN (" . str_replace(",,", ",", implode(",", $instance['category_id'])) . ") ";
         }
         if (isset($instance['tag_id']) && count($instance['tag_id']) > 0) {
             $from = $from . " INNER JOIN $wpdb->term_relationships as tr3 ON posts.ID = tr3.object_ID
 				INNER JOIN $wpdb->term_taxonomy as tt3 ON tr3.term_taxonomy_id = tt3.term_taxonomy_id ";
-            $where = $where . " AND tt3.taxonomy = 'post_tag' AND tt3.term_id IN (" . implode(",", $instance['tag_id']) . ") ";
+            $where = $where . " AND tt3.taxonomy = 'post_tag' AND tt3.term_id IN (" . str_replace(",,", ",", implode(",", $instance['tag_id'])) . ") ";
         }
         if (isset($instance['post_type']) && count($instance['post_type']) > 0) {
-            $where = $where . " AND posts.post_type IN ('" . implode("','", $instance['post_type']) . "') ";
+            $where = $where . " AND posts.post_type IN ('" . str_replace(",,", ",", implode("','", $instance['post_type'])) . "') ";
         }
         if (isset($instance['author']) && count($instance['author']) > 0) {
-            $where = $where . " AND posts.post_author IN ('" . implode("','", $instance['author']) . "') ";
+            $where = $where . " AND posts.post_author IN ('" . str_replace(",,", ",", implode("','", $instance['author'])) . "') ";
         }
 
         if (isset($instance['post_age']) && (is_int($instance['post_age']) || ctype_digit($instance['post_age'])) && intval($instance['post_age']) > 0) {
@@ -180,7 +181,7 @@ class WPCTC_Widget extends WP_Widget
         if (isset($instance['post_count']) && (is_int($instance['post_count']) || ctype_digit($instance['post_count'])) && intval($instance['post_count']) > 0) {
             $where = $where . " GROUP BY tag_id HAVING count(distinct posts.ID) >= ".intval($instance['post_count']);
         }
-        
+
         $tags = $wpdb->get_results
         (" SELECT DISTINCT tt2.term_id AS tag_id
 			FROM $wpdb->posts as posts " .
@@ -815,7 +816,7 @@ class WPCTC_Widget extends WP_Widget
     function update($new_instance, $old_instance)
     {
         $instance = array();
-        $instance['title'] = (!empty($new_instance['title'])) ? strip_tags($new_instance['title']) : __('New title', 'wpctc_widget_domain');
+        $instance['title'] = (!empty($new_instance['title'])) ? strip_tags($new_instance['title']) : __('', 'wpctc_widget_domain');
         $instance['exclude'] = (!empty($new_instance['exclude'])) ? strip_tags($new_instance['exclude']) : '';
         $instance['font'] = (!empty($new_instance['font'])) ? strip_tags($new_instance['font']) : '';
         $custom_taxonomies = get_taxonomies(array('public' => true, '_builtin' => false), 'objects', 'and');
