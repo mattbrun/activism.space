@@ -1,10 +1,10 @@
 <?php
 
 /*
-Widget Name: Headline widget
+Widget Name: Headline
 Description: A headline to headline all headlines.
 Author: SiteOrigin
-Author URI: http://siteorigin.com
+Author URI: https://siteorigin.com
 */
 
 class SiteOrigin_Widget_Headline_Widget extends SiteOrigin_Widget {
@@ -13,111 +13,145 @@ class SiteOrigin_Widget_Headline_Widget extends SiteOrigin_Widget {
 
 		parent::__construct(
 			'sow-headline',
-			__( 'SiteOrigin Headline', 'siteorigin-widgets' ),
+			__( 'SiteOrigin Headline', 'so-widgets-bundle' ),
 			array(
-				'description' => __( 'A headline widget.', 'siteorigin-widgets' )
+				'description' => __( 'A headline widget.', 'so-widgets-bundle' )
 			),
 			array(),
 			array(
 				'headline' => array(
 					'type' => 'section',
-					'label'  => __( 'Headline', 'siteorigin-widgets' ),
+					'label'  => __( 'Headline', 'so-widgets-bundle' ),
 					'hide'   => false,
 					'fields' => array(
 						'text' => array(
 							'type' => 'text',
-							'label' => __( 'Text', 'siteorigin-widgets' ),
+							'label' => __( 'Text', 'so-widgets-bundle' ),
+						),
+						'tag' => array(
+							'type' => 'select',
+							'label' => __( 'H Tag', 'so-widgets-bundle' ),
+							'default' => 'h1',
+							'options' => array(
+								'h1' => __( 'H1', 'so-widgets-bundle' ),
+								'h2' => __( 'H2', 'so-widgets-bundle' ),
+								'h3' => __( 'H3', 'so-widgets-bundle' ),
+								'h4' => __( 'H4', 'so-widgets-bundle' ),
+								'h5' => __( 'H5', 'so-widgets-bundle' ),
+								'h6' => __( 'H6', 'so-widgets-bundle' ),
+							)
 						),
 						'font' => array(
 							'type' => 'font',
-							'label' => __( 'Font', 'siteorigin-widgets' ),
+							'label' => __( 'Font', 'so-widgets-bundle' ),
 							'default' => 'default'
 						),
 						'color' => array(
 							'type' => 'color',
-							'label' => __('Color', 'siteorigin-widgets'),
-							'default' => '#000000'
+							'label' => __('Color', 'so-widgets-bundle'),
 						),
 						'align' => array(
 							'type' => 'select',
-							'label' => __( 'Align', 'siteorigin-widgets' ),
+							'label' => __( 'Align', 'so-widgets-bundle' ),
 							'default' => 'center',
 							'options' => array(
-								'center' => __( 'Center', 'siteorigin-widgets' ),
-								'left' => __( 'Left', 'siteorigin-widgets' ),
-								'right' => __( 'Right', 'siteorigin-widgets' ),
-								'justify' => __( 'Justify', 'siteorigin-widgets' )
+								'center' => __( 'Center', 'so-widgets-bundle' ),
+								'left' => __( 'Left', 'so-widgets-bundle' ),
+								'right' => __( 'Right', 'so-widgets-bundle' ),
+								'justify' => __( 'Justify', 'so-widgets-bundle' )
 							)
 						)
 					)
 				),
 				'sub_headline' => array(
 					'type' => 'section',
-					'label'  => __( 'Sub headline', 'siteorigin-widgets' ),
+					'label'  => __( 'Sub headline', 'so-widgets-bundle' ),
 					'hide'   => true,
 					'fields' => array(
 						'text' => array(
 							'type' => 'text',
-							'label' => __('Text', 'siteorigin-widgets')
+							'label' => __('Text', 'so-widgets-bundle')
+						),
+						'tag' => array(
+							'type' => 'select',
+							'label' => __( 'H Tag', 'so-widgets-bundle' ),
+							'default' => 'h3',
+							'options' => array(
+								'h1' => __( 'H1', 'so-widgets-bundle' ),
+								'h2' => __( 'H2', 'so-widgets-bundle' ),
+								'h3' => __( 'H3', 'so-widgets-bundle' ),
+								'h4' => __( 'H4', 'so-widgets-bundle' ),
+								'h5' => __( 'H5', 'so-widgets-bundle' ),
+								'h6' => __( 'H6', 'so-widgets-bundle' ),
+							)
 						),
 						'font' => array(
 							'type' => 'font',
-							'label' => __( 'Font', 'siteorigin-widgets' ),
+							'label' => __( 'Font', 'so-widgets-bundle' ),
 							'default' => 'default'
 						),
 						'color' => array(
 							'type' => 'color',
-							'label' => __('Color', 'siteorigin-widgets'),
-							'default' => '#000000'
+							'label' => __('Color', 'so-widgets-bundle'),
 						),
 						'align' => array(
 							'type' => 'select',
-							'label' => __( 'Align', 'siteorigin-widgets' ),
+							'label' => __( 'Align', 'so-widgets-bundle' ),
 							'default' => 'center',
 							'options' => array(
-								'center' => __( 'Center', 'siteorigin-widgets' ),
-								'left' => __( 'Left', 'siteorigin-widgets' ),
-								'right' => __( 'Right', 'siteorigin-widgets' ),
-								'justify' => __( 'Justify', 'siteorigin-widgets' )
+								'center' => __( 'Center', 'so-widgets-bundle' ),
+								'left' => __( 'Left', 'so-widgets-bundle' ),
+								'right' => __( 'Right', 'so-widgets-bundle' ),
+								'justify' => __( 'Justify', 'so-widgets-bundle' )
 							)
 						)
 					)
 				),
 				'divider' => array(
 					'type' => 'section',
-					'label' => __( 'Divider', 'siteorigin-widgets' ),
+					'label' => __( 'Divider', 'so-widgets-bundle' ),
 					'hide' => true,
 					'fields' => array(
 						'style' => array(
 							'type' => 'select',
-							'label' => __( 'Style', 'siteorigin-widgets' ),
+							'label' => __( 'Style', 'so-widgets-bundle' ),
 							'default' => 'solid',
 							'options' => array(
-								'none' => __('None', 'siteorigin-widgets'),
-								'solid' => __('Solid', 'siteorigin-widgets'),
-								'dotted' => __('Dotted', 'siteorigin-widgets'),
-								'dashed' => __('Dashed', 'siteorigin-widgets'),
-								'double' => __('Double', 'siteorigin-widgets'),
-								'groove' => __('Groove', 'siteorigin-widgets'),
-								'ridge' => __('Ridge', 'siteorigin-widgets'),
-								'inset' => __('Inset', 'siteorigin-widgets'),
-								'outset' => __('Outset', 'siteorigin-widgets'),
+								'none' => __('None', 'so-widgets-bundle'),
+								'solid' => __('Solid', 'so-widgets-bundle'),
+								'dotted' => __('Dotted', 'so-widgets-bundle'),
+								'dashed' => __('Dashed', 'so-widgets-bundle'),
+								'double' => __('Double', 'so-widgets-bundle'),
+								'groove' => __('Groove', 'so-widgets-bundle'),
+								'ridge' => __('Ridge', 'so-widgets-bundle'),
+								'inset' => __('Inset', 'so-widgets-bundle'),
+								'outset' => __('Outset', 'so-widgets-bundle'),
 							)
 						),
 						'weight' => array(
 							'type' => 'select',
-							'label' => __( 'Weight', 'siteorigin-widgets' ),
+							'label' => __( 'Weight', 'so-widgets-bundle' ),
 							'default' => 'thin',
 							'options' => array(
-								'thin' => __( 'Thin', 'siteorigin-widgets' ),
-								'medium' => __( 'Medium', 'siteorigin-widgets' ),
-								'thick' => __( 'Thick', 'siteorigin-widgets' ),
+								'thin' => __( 'Thin', 'so-widgets-bundle' ),
+								'medium' => __( 'Medium', 'so-widgets-bundle' ),
+								'thick' => __( 'Thick', 'so-widgets-bundle' ),
 							)
 						),
 						'color' => array(
 							'type' => 'color',
-							'label' => __('Color', 'siteorigin-widgets'),
+							'label' => __('Color', 'so-widgets-bundle'),
 							'default' => '#EEEEEE'
+						),
+						'side_margin' => array(
+							'type' => 'measurement',
+							'label' => __('Side Margin', 'so-widgets-bundle'),
+							'default' => '60px',
+						),
+						'top_margin' => array(
+							'type' => 'measurement',
+							'label' => __('Top/Bottom Margin', 'so-widgets-bundle'),
+							'default' => '20px',
 						)
 					)
 				)
@@ -134,6 +168,9 @@ class SiteOrigin_Widget_Headline_Widget extends SiteOrigin_Widget {
 
 		if ( ! empty( $instance['headline'] ) ) {
 			$headline_styles = $instance['headline'];
+			if ( ! empty( $headline_styles['tag'] ) ) {
+				$less_vars['headline_tag'] = $headline_styles['tag'];
+			}
 			if ( ! empty( $headline_styles['align'] ) ) {
 				$less_vars['headline_align'] = $headline_styles['align'];
 			}
@@ -153,6 +190,9 @@ class SiteOrigin_Widget_Headline_Widget extends SiteOrigin_Widget {
 			$sub_headline_styles = $instance['sub_headline'];
 			if ( ! empty( $sub_headline_styles['align'] ) ) {
 				$less_vars['sub_headline_align'] = $sub_headline_styles['align'];
+			}
+			if ( ! empty( $sub_headline_styles['tag'] ) ) {
+				$less_vars['sub_headline_tag'] = $sub_headline_styles['tag'];
 			}
 			if ( ! empty( $sub_headline_styles['color'] ) ) {
 				$less_vars['sub_headline_color'] = $sub_headline_styles['color'];
@@ -180,37 +220,27 @@ class SiteOrigin_Widget_Headline_Widget extends SiteOrigin_Widget {
 			if ( ! empty( $divider_styles['color'] ) ) {
 				$less_vars['divider_color'] = $divider_styles['color'];
 			}
+
+			if ( !empty( $divider_styles['top_margin'] ) && !empty( $divider_styles['top_margin_unit'] ) ) {
+				$less_vars['divider_top_margin'] = $divider_styles['top_margin'] . $divider_styles['top_margin_unit'];
+			}
+
+			if ( !empty( $divider_styles['side_margin'] ) && !empty( $divider_styles['side_margin_unit'] ) ) {
+				$less_vars['divider_side_margin'] = $divider_styles['side_margin'] . $divider_styles['side_margin_unit'];
+			}
+
+
 		}
 
 		return $less_vars;
 	}
 
-	/**
-	 * Less function for importing Google web fonts.
-	 *
-	 * @param $instance
-	 * @param $args
-	 *
-	 * @return string
-	 */
-	function less_import_google_font($instance, $args) {
-		if( empty( $instance ) ) return;
+	function get_google_font_fields( $instance ) {
 
-		$font_imports = array(
-			siteorigin_widget_get_font( $instance['headline']['font'] ),
-			siteorigin_widget_get_font( $instance['sub_headline']['font'] ),
+		return array(
+			$instance['headline']['font'],
+			$instance['sub_headline']['font'],
 		);
-
-		$import_strings = array();
-		foreach( $font_imports as $import ) {
-			$import_strings[] = !empty($import['css_import']) ? $import['css_import'] : '';
-		}
-
-		// Remove empty and duplicate items from the array
-		$import_strings = array_filter($import_strings);
-		$import_strings = array_unique($import_strings);
-
-		return implode("\n", $import_strings);
 	}
 
 	/**
@@ -237,10 +267,12 @@ class SiteOrigin_Widget_Headline_Widget extends SiteOrigin_Widget {
 
 		return array(
 			'headline' => $instance['headline']['text'],
+			'headline_tag' => $instance['headline']['tag'],
 			'sub_headline' => $instance['sub_headline']['text'],
+			'sub_headline_tag' => $instance['sub_headline']['tag'],
 			'has_divider' => ! empty( $instance['divider'] ) && $instance['divider']['style'] != 'none'
 		);
 	}
 }
 
-siteorigin_widget_register('headline', __FILE__);
+siteorigin_widget_register('sow-headline', __FILE__, 'SiteOrigin_Widget_Headline_Widget');

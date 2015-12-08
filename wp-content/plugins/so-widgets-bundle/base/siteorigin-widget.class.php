@@ -124,7 +124,10 @@ abstract class SiteOrigin_Widget extends WP_Widget {
 		// Storage hash allows templates to get access to
 		$storage_hash = '';
 		if( !empty($this->widget_options['instance_storage']) ) {
-			$stored_instance = $this->filter_stored_instance($instance);
+			$stored_instance = $this->modify_stored_instance($instance);
+			// We probably don't want panels_info
+			unset($stored_instance['panels_info']);
+
 			$storage_hash = substr( md5( serialize($stored_instance) ), 0, 8 );
 			if( !empty( $stored_instance ) && empty( $instance['is_preview'] ) ) {
 				// Store this if we have a non empty instance and are not previewing
@@ -174,7 +177,7 @@ abstract class SiteOrigin_Widget extends WP_Widget {
 		$upload_dir = wp_upload_dir();
 		$this->clear_file_cache();
 
-		if($style !== false) {
+		if( !empty($style) ) {
 			$hash = $this->get_style_hash( $instance );
 			$css_name = $this->id_base.'-'.$style.'-'.$hash;
 
@@ -299,6 +302,10 @@ abstract class SiteOrigin_Widget extends WP_Widget {
 		$form_id = 'siteorigin_widget_form_'.md5( uniqid( rand(), true ) );
 		$class_name = str_replace( '_', '-', strtolower(get_class($this)) );
 
+		if( empty( $instance['_sow_form_id'] ) ) {
+			$instance['_sow_form_id'] = uniqid();
+		}
+
 		?>
 		<div class="siteorigin-widget-form siteorigin-widget-form-main siteorigin-widget-form-main-<?php echo esc_attr($class_name) ?>" id="<?php echo $form_id ?>" data-class="<?php echo get_class($this) ?>" style="display: none">
 			<?php
@@ -317,20 +324,21 @@ abstract class SiteOrigin_Widget extends WP_Widget {
 				$this->fields[$field_name] = $field;
 			}
 			?>
+			<input type="hidden" name="<?php echo $this->get_field_name('_sow_form_id') ?>" value="<?php echo esc_attr( $instance['_sow_form_id'] ) ?>" class="siteorigin-widgets-form-id" />
 		</div>
 		<div class="siteorigin-widget-form-no-styles">
-			<p><strong><?php _e('This widget has scripts and styles that need to be loaded before you can use it. Please save and reload your current page.', 'siteorigin-widgets') ?></strong></p>
-			<p><strong><?php _e('You will only need to do this once.', 'siteorigin-widgets') ?></strong></p>
+			<p><strong><?php _e('This widget has scripts and styles that need to be loaded before you can use it. Please save and reload your current page.', 'so-widgets-bundle') ?></strong></p>
+			<p><strong><?php _e('You will only need to do this once.', 'so-widgets-bundle') ?></strong></p>
 		</div>
 
 		<?php if( $this->widget_options['has_preview'] && ! $this->is_customize_preview() ) : ?>
 			<div class="siteorigin-widget-preview" style="display: none">
-				<a href="#" class="siteorigin-widget-preview-button button-secondary"><?php _e('Preview', 'siteorigin-widgets') ?></a>
+				<a href="#" class="siteorigin-widget-preview-button button-secondary"><?php _e('Preview', 'so-widgets-bundle') ?></a>
 			</div>
 		<?php endif; ?>
 
 		<?php if( !empty( $this->widget_options['help'] ) ) : ?>
-			<a href="<?php echo sow_esc_url($this->widget_options['help']) ?>" class="siteorigin-widget-help-link siteorigin-panels-help-link" target="_blank"><?php _e('Help', 'siteorigin-widgets') ?></a>
+			<a href="<?php echo sow_esc_url($this->widget_options['help']) ?>" class="siteorigin-widget-help-link siteorigin-panels-help-link" target="_blank"><?php _e('Help', 'so-widgets-bundle') ?></a>
 		<?php endif; ?>
 
 		<script type="text/javascript">
@@ -368,7 +376,7 @@ abstract class SiteOrigin_Widget extends WP_Widget {
 
 			wp_localize_script( 'siteorigin-widget-admin', 'soWidgets', array(
 				'ajaxurl' => wp_nonce_url( admin_url('admin-ajax.php'), 'widgets_action', '_widgets_nonce' ),
-				'sure' => __('Are you sure?', 'siteorigin-widgets')
+				'sure' => __('Are you sure?', 'so-widgets-bundle')
 			) );
 
 			global $wp_customize;
@@ -399,7 +407,7 @@ abstract class SiteOrigin_Widget extends WP_Widget {
 				<div class="siteorigin-widgets-preview-modal-overlay"></div>
 
 				<div class="so-widget-toolbar">
-					<h3><?php _e('Widget Preview', 'siteorigin-widgets') ?></h3>
+					<h3><?php _e('Widget Preview', 'so-widgets-bundle') ?></h3>
 					<div class="close"><span class="dashicons dashicons-arrow-left-alt2"></span></div>
 				</div>
 
@@ -456,7 +464,7 @@ abstract class SiteOrigin_Widget extends WP_Widget {
 					$field = $field_factory->create_field( $field_name, $field_options, $this );
 					$this->fields[$field_name] = $field;
 				}
-				$new_instance[$field_name] = $field->sanitize( isset( $new_instance[$field_name] ) ? $new_instance[$field_name] : null );
+				$new_instance[$field_name] = $field->sanitize( isset( $new_instance[$field_name] ) ? $new_instance[$field_name] : null, $new_instance );
 				$new_instance = $field->sanitize_instance( $new_instance );
 			}
 
@@ -618,7 +626,16 @@ abstract class SiteOrigin_Widget extends WP_Widget {
 		$lc_functions = new SiteOrigin_Widgets_Less_Functions($this, $instance);
 		$lc_functions->registerFunctions($c);
 
-		return apply_filters( 'siteorigin_widgets_instance_css', $c->compile( $less ), $instance, $this );
+		$css = $c->compile( $less );
+
+		// Remove any attributes with default as the value
+		$css = preg_replace('/[a-zA-Z\-]+ *: *default *;/', '', $css);
+
+		// Remove any empty CSS
+		$css = preg_replace('/[^{}]*\{\s*\}/m', '', $css);
+		$css = trim($css);
+
+		return apply_filters( 'siteorigin_widgets_instance_css', $css, $instance, $this );
 	}
 
 	/**
@@ -688,6 +705,47 @@ abstract class SiteOrigin_Widget extends WP_Widget {
 		// Finally call the function and include the
 		$args = array_map('trim', $args);
 		return call_user_func( array($this, $func), $this->current_instance, $args );
+	}
+
+	/**
+	 * Less function for importing Google web fonts.
+	 *
+	 * @param $instance
+	 * @param $args
+	 *
+	 * @return string
+	 */
+	function less_import_google_font($instance, $args) {
+		if( empty( $instance ) ) return;
+
+		$fonts = $this->get_google_font_fields($instance);
+		$font_imports = array();
+
+		foreach ( $fonts as $font ) {
+			$font_imports[] = siteorigin_widget_get_font( $font );
+		}
+
+		$import_strings = array();
+		foreach( $font_imports as $import ) {
+			$import_strings[] = !empty($import['css_import']) ? $import['css_import'] : '';
+		}
+
+		// Remove empty and duplicate items from the array
+		$import_strings = array_filter($import_strings);
+		$import_strings = array_unique($import_strings);
+
+		return implode("\n", $import_strings);
+	}
+
+	/**
+	 * Get any font fields which may be used by this widget.
+	 *
+	 * @param $instance
+	 *
+	 * @return array
+	 */
+	function get_google_font_fields( $instance ) {
+		return array();
 	}
 
 	/**
@@ -821,7 +879,7 @@ abstract class SiteOrigin_Widget extends WP_Widget {
 	 *
 	 * @return mixed
 	 */
-	function filter_stored_instance( $instance ){
+	function modify_stored_instance( $instance ){
 		return $instance;
 	}
 
@@ -899,7 +957,7 @@ abstract class SiteOrigin_Widget extends WP_Widget {
 					$f_script[0],
 					isset( $f_script[1] ) ? $f_script[1] : false,
 					isset( $f_script[2] ) ? $f_script[2] : array(),
-					isset( $f_script[3] ) ? $f_script[3] : false,
+					!empty( $f_script[3] ) ? $f_script[3] : SOW_BUNDLE_VERSION,
 					isset( $f_script[4] ) ? $f_script[4] : false
 				);
 			}
@@ -929,7 +987,7 @@ abstract class SiteOrigin_Widget extends WP_Widget {
 					$f_style[0],
 					isset( $f_style[1] ) ? $f_style[1] : false,
 					isset( $f_style[2] ) ? $f_style[2] : array(),
-					isset( $f_style[3] ) ? $f_style[3] : false,
+					!empty( $f_script[3] ) ? $f_script[3] : SOW_BUNDLE_VERSION,
 					isset( $f_style[4] ) ? $f_style[4] : "all"
 				);
 			}

@@ -44,10 +44,14 @@ class SiteOrigin_Widget_Field_Repeater extends SiteOrigin_Widget_Field_Container
 		$item_label = isset( $this->item_label ) ? $this->item_label : null;
 		if ( ! empty( $item_label ) ) {
 			// convert underscore naming convention to camelCase for javascript and encode as json string
+			$item_label = wp_parse_args( $item_label, array(
+				'update_event' => 'change',
+				'value_method' => 'val'
+			) );
 			$item_label = siteorigin_widgets_underscores_to_camel_case( $item_label );
 			$item_label = json_encode( $item_label );
 		}
-		if( empty( $this->item_name ) ) $this->item_name = __( 'Item', 'siteorigin-widgets' );
+		if( empty( $this->item_name ) ) $this->item_name = __( 'Item', 'so-widgets-bundle' );
 		?>
 		<div class="siteorigin-widget-field-repeater"
 		     data-item-name="<?php echo esc_attr( $this->item_name ) ?>"
@@ -86,7 +90,7 @@ class SiteOrigin_Widget_Field_Repeater extends SiteOrigin_Widget_Field_Container
 				?>
 			</div>
 			<?php if( empty( $this->readonly ) ) : ?>
-				<div class="siteorigin-widget-field-repeater-add"><?php esc_html_e( 'Add', 'siteorigin-widgets' ) ?></div>
+				<div class="siteorigin-widget-field-repeater-add"><?php esc_html_e( 'Add', 'so-widgets-bundle' ) ?></div>
 			<?php endif; ?>
 			<?php
 			ob_start();
@@ -101,7 +105,7 @@ class SiteOrigin_Widget_Field_Repeater extends SiteOrigin_Widget_Field_Container
 		<?php
 	}
 
-	protected function render_field_label() {
+	protected function render_field_label( $value, $instance ) {
 		// Empty override. This field renders it's own label in the render_field() function.
 	}
 
@@ -112,11 +116,11 @@ class SiteOrigin_Widget_Field_Repeater extends SiteOrigin_Widget_Field_Container
 	 *
 	 * @return array|mixed
 	 */
-	function sanitize_field_input( $value ){
+	function sanitize_field_input( $value, $instance ){
 		if( empty($value) ) return array();
 
 		foreach( $value as &$el ) {
-			$el = parent::sanitize_field_input( $el );
+			$el = parent::sanitize_field_input( $el, $instance );
 		}
 
 		return $value;

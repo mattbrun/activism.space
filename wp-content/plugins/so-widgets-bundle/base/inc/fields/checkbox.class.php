@@ -15,11 +15,11 @@ class SiteOrigin_Widget_Field_Checkbox extends SiteOrigin_Widget_Field_Base {
 		<?php
 	}
 
-	protected function render_field_label() {
+	protected function render_field_label( $value, $instance ) {
 		// Empty override. This field renders it's own label in the render_field() function.
 	}
 
-	protected function sanitize_field_input( $value ) {
+	protected function sanitize_field_input( $value, $instance ) {
 		return ! empty( $value );
 	}
 

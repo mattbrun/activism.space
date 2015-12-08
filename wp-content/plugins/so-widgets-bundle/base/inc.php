@@ -146,7 +146,7 @@ function siteorigin_widget_preview_widget_action(){
 	?>
 	<html>
 		<head>
-			<title><?php _e('Widget Preview', 'siteorigin-widgets') ?></title>
+			<title><?php _e('Widget Preview', 'so-widgets-bundle') ?></title>
 			<?php
 			wp_print_scripts();
 			wp_print_styles();
@@ -167,7 +167,7 @@ function siteorigin_widget_preview_widget_action(){
 add_action('wp_ajax_so_widgets_preview', 'siteorigin_widget_preview_widget_action');
 
 /**
- *
+ * Action to handle searching
  */
 function siteorigin_widget_search_posts_action(){
 	if ( empty( $_REQUEST['_widgets_nonce'] ) || !wp_verify_nonce( $_REQUEST['_widgets_nonce'], 'widgets_action' ) ) return;
@@ -201,8 +201,6 @@ function siteorigin_widget_search_posts_action(){
 	", ARRAY_A );
 
 	echo json_encode( $results );
-
-
 	wp_die();
 }
 add_action('wp_ajax_so_widgets_search_posts', 'siteorigin_widget_search_posts_action');
@@ -216,7 +214,7 @@ add_action('wp_ajax_so_widgets_search_posts', 'siteorigin_widget_search_posts_ac
  */
 function siteorigin_widget_add_bundle_groups($widgets){
 	foreach( $widgets as $class => &$widget ) {
-		if( preg_match('/SiteOrigin_Widget_(.*)_Widget/', $class, $matches) ) {
+		if( preg_match('/SiteOrigin_Widget_(.*)_Widget/i', $class, $matches) ) {
 			$widget['icon'] = 'so-widget-icon so-widget-icon-'.strtolower($matches[1]);
 			$widget['groups'] = array('so-widgets-bundle');
 		}
@@ -311,3 +309,25 @@ function siteorigin_widgets_tinymce_admin_print_styles() {
 	wp_enqueue_style( 'editor-buttons' );
 }
 add_action( 'admin_print_styles', 'siteorigin_widgets_tinymce_admin_print_styles' );
+
+/**
+ * Get list of supported measurements
+ *
+ * @return array
+ */
+function siteorigin_widgets_get_measurements_list() {
+	$measurements = array(
+		'px',
+		'%',
+		'in',
+		'cm',
+		'mm',
+		'em',
+		'ex',
+		'pt',
+		'pc',
+	);
+
+	// Allow themes and plugins to trim or enhance the list.
+	return apply_filters('siteorigin_widgets_get_measurements_list', $measurements);
+}

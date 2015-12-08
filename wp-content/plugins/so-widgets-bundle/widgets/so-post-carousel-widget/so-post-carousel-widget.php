@@ -1,9 +1,9 @@
 <?php
 /*
-Widget Name: Post carousel widget
+Widget Name: Post Carousel
 Description: Gives you a widget to display your posts as a carousel.
-Author: Greg Priday
-Author URI: http://siteorigin.com
+Author: SiteOrigin
+Author URI: https://siteorigin.com
 */
 
 /**
@@ -27,20 +27,7 @@ function sow_carousel_get_next_posts_page() {
 
 	$posts = new WP_Query($query);
 	ob_start();
-	while($posts->have_posts()) : $posts->the_post(); ?>
-		<li class="sow-carousel-item">
-			<div class="sow-carousel-thumbnail">
-				<?php if( has_post_thumbnail() ) : $img = wp_get_attachment_image_src(get_post_thumbnail_id(), 'sow-carousel-default'); ?>
-					<a href="<?php the_permalink() ?>" style="background-image: url(<?php echo sow_esc_url($img[0]) ?>)">
-						<span class="overlay"></span>
-					</a>
-				<?php else : ?>
-					<a href="<?php the_permalink() ?>" class="sow-carousel-default-thumbnail"><span class="overlay"></span></a>
-				<?php endif; ?>
-			</div>
-			<h3><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h3>
-		</li>
-	<?php endwhile; wp_reset_postdata();
+	include 'tpl/carousel-post-loop.php';
 	$result = array( 'html' => ob_get_clean() );
 	header('content-type: application/json');
 	echo json_encode( $result );
@@ -54,9 +41,9 @@ class SiteOrigin_Widget_PostCarousel_Widget extends SiteOrigin_Widget {
 	function __construct() {
 		parent::__construct(
 			'sow-post-carousel',
-			__('SiteOrigin Post Carousel', 'siteorigin-widgets'),
+			__('SiteOrigin Post Carousel', 'so-widgets-bundle'),
 			array(
-				'description' => __('Display your posts as a carousel.', 'siteorigin-widgets'),
+				'description' => __('Display your posts as a carousel.', 'so-widgets-bundle'),
 				'help' => 'https://siteorigin.com/widgets-bundle/post-carousel-widget/'
 			),
 			array(
@@ -65,12 +52,12 @@ class SiteOrigin_Widget_PostCarousel_Widget extends SiteOrigin_Widget {
 			array(
 				'title' => array(
 					'type' => 'text',
-					'label' => __('Title', 'siteorigin-widgets'),
+					'label' => __('Title', 'so-widgets-bundle'),
 				),
 
 				'posts' => array(
 					'type' => 'posts',
-					'label' => __('Posts query', 'siteorigin-widgets'),
+					'label' => __('Posts query', 'so-widgets-bundle'),
 				),
 			),
 			plugin_dir_path(__FILE__).'../'
@@ -88,7 +75,7 @@ class SiteOrigin_Widget_PostCarousel_Widget extends SiteOrigin_Widget {
 				),
 				array(
 					'sow-carousel-basic',
-					siteorigin_widget_get_plugin_dir_url( 'post-carousel' ) . 'js/carousel' . SOW_BUNDLE_JS_SUFFIX . '.js',
+					plugin_dir_url(__FILE__) . 'js/carousel' . SOW_BUNDLE_JS_SUFFIX . '.js',
 					array( 'jquery', 'touch-swipe' ),
 					SOW_BUNDLE_VERSION,
 					true
@@ -99,7 +86,7 @@ class SiteOrigin_Widget_PostCarousel_Widget extends SiteOrigin_Widget {
 			array(
 				array(
 					'sow-carousel-basic',
-					siteorigin_widget_get_plugin_dir_url( 'post-carousel' ) . 'css/style.css',
+					plugin_dir_url(__FILE__) . 'css/style.css',
 					array(),
 					SOW_BUNDLE_VERSION
 				)
@@ -116,4 +103,4 @@ class SiteOrigin_Widget_PostCarousel_Widget extends SiteOrigin_Widget {
 	}
 }
 
-siteorigin_widget_register('post-carousel', __FILE__);
+siteorigin_widget_register('sow-post-carousel', __FILE__, 'SiteOrigin_Widget_PostCarousel_Widget');
