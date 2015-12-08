@@ -3,7 +3,7 @@ Contributors: codename065, shahriar0822, tauhidul-alam
 Donate link: 
 Tags: digital store, eshop, ecommerce, e-commerce, file management,  document management plugin, download manager, file manager, download monitor, download counter, password protection, download protection
 Requires at least: 3.4
-Tested up to: 4.2
+Tested up to: 4.4
 License: GPLv2 or later
  
   
@@ -28,11 +28,12 @@ It has easiest checkout option to give the user better experience in purchasing 
 *	Download Counter
 *	Custom download link icon
 *	File type icon support
+*   Full Featured User Dashboard ( use short-code [wpdm_user_dashboard] )
 *	DataTable support ( use short-code [wpdm-all-packages jstable=1 items_per_page=20] )
 *	Searching and Sorting Option
 *	Custom link label
 *	Short-code for download link
-*	Short-code for direct link to downloadable file [wpdm_hotlink id=file_id_required link_label=any_text_optional]
+*	Short-code for direct link to downloadable file [wpdm_direct_link id=file_id_required link_label=any_text_optional]
 *	Widget for new files
 *	Widget for top downloads
 *	Widget for searching downloads
@@ -55,18 +56,18 @@ Use [Premium Package – Complete Digital Store Solution](http://www.wpdownloadm
 *   Sales Tax
 *   Save Cart and Checkout Later
 *   Email Saved Cart
-*   Product & Price variation ( This Feature Requires WPDM v4+ )
+*   Product & Price variation
 *   Promotional Pricing for Your Digital Products
 *   Invoice Generation
 *   Easiest Checkout System
-*   Guest Checkout ( This Feature Requires WPDM v4+ )
+*   Guest Checkout
 *   Easy Order Management
 *   Sales Notifications via Email
 *   Sales Notification Directly in Your Mobile with Push Message
 *   Very Detailed Sales Reports
-*   Order Notes & Messaging System ( This Feature Requires WPDM v4+ )
+*   Order Notes & Messaging System
 *   Full-featured Digital Products Marketplace with Front-end product submission & payout management ( This Feature Requires WPDM v4+ )
-*   Product Licensing System ( This Feature Requires WPDM v4+ )
+*   Product Licensing System
 *   and [many more...](http://www.wpdownloadmanager.com/downloads/ecommerce-add-ons/)
 
 
@@ -96,6 +97,7 @@ Check download stats and get push notification when someone downloads, install:
 * [WPDM for iOS](http://www.wpdownloadmanager.com/download/wpdm-ios/) - Check download and sales stats directly from your iPhone or iPad
 
 = Free Themes =
+* [Verse - Theme For Digital Shop](http://www.wpdownloadmanager.com/download/verse-wordpress-theme-for-digital-shop/)
 * [Expo - Specially Optimized for WordPress Download Manager](http://www.wpdownloadmanager.com/download/expo/)
 * [WPDM 2015](http://www.wpdownloadmanager.com/download/wpdm-twenty-fifteen/)  - Twenty Fifteen Child Theme for WordPress Download Manager
 
@@ -120,8 +122,37 @@ Check download stats and get push notification when someone downloads, install:
 5. Settings Page
 6. Front-end preview for category short-code
 7. Password Protection
+8. User Dashboard Login
+9. User Dashboard
+10. Orders Page ( Admin )
+11. Order Details ( Admin )
+12. Invoice
 
 == Changelog ==
+
+= 2.8.3 =
+* Fixed issue with tree view, added missing functions
+* Compatibility released for WordPress v4.4
+* Enabled category page
+* Activated all features for Premium Package ( Guest Order, Guest Download, Order Notes, Save & Email Cart )
+
+= 2.8.2 =
+* Added category widget
+* Updated link template "Default Template (Extended)"  to show file description
+* Updated recommended download section in user dashboard
+* Fixed critical issue with URL rewrite for user dashboard
+* Fixed issue with icons
+* Fixed alt tag issue with icons and thumbnail
+
+= 2.8.1 =
+* Added new option to enable/disable font awesome
+* Optimized user dashboard
+* Added missing file type icons
+
+= 2.8.0 =
+* Fixed issue with file attachment
+* Added New Short-code User Dashboard
+* Added Download History Page
 
 = 2.7.96 =
 * WordPress v4.3 compatibility release

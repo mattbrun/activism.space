@@ -72,7 +72,7 @@ function buddypress_addon_settings(){
         }
         die('Settings Saved Successfully!');
     }
-    include(WPDM_BASE_DIR."settings/buddypress.php");
+    include(WPDM_BASE_DIR."admin/settings/buddypress.php");
 }
 
 function wpdm_cloud_storage_settings(){
@@ -84,7 +84,7 @@ function wpdm_cloud_storage_settings(){
         }
         die('Settings Saved Successfully!');
     }
-    include(WPDM_BASE_DIR."settings/cloud-storage.php");
+    include(WPDM_BASE_DIR."admin/settings/cloud-storage.php");
 }
 
 
@@ -210,7 +210,7 @@ function FMSettings()
     }
 
     $access = get_option('access_level');
-    include('wpdm-settings.php');
+    include('admin/wpdm-settings.php');
 }
 
 function basic_settings()
@@ -230,7 +230,7 @@ function basic_settings()
 
         die(__('Settings Saved Successfully','wpdmpro'));
     }
-    include('settings/basic.php');
+    include('admin/settings/basic.php');
 }
 
 function wdm_ajax_settings()
@@ -608,7 +608,7 @@ function wpdm_ajax_call_exec()
 
 
 
-    include(dirname(__FILE__) . "/hooks.php");
+    include(dirname(__FILE__) . "/wpdm-hooks.php");
 
 
  

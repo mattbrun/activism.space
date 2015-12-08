@@ -12,8 +12,8 @@
     } ?>
 </ul>
 
-<div id="package-settings" class="tabc">
-    <table cellpadding="5" id="file_settings_table" cellspacing="0" width="100%" class="frm">
+<div id="package-settings" class="w3eden tabc">
+    <table cellpadding="5" id="file_settings_table" cellspacing="0" width="100%" class="table table-bordered">
         <tr id="link_label_row">
             <td width="90px"><?php echo __('Link Label:','wpdmpro'); ?></td>
             <td><input size="10" type="text" style="width: 200px" value="<?php echo get_post_meta($post->ID,'__wpdm_link_label',true); ?>" name="file[link_label]" />
@@ -323,7 +323,6 @@ input{
     cursor: move;
 }
 .cfile img, .dfile img{cursor: pointer;}
-.inside{padding:10px !important;}
 #editorcontainer textarea{border:0px;width:99.9%;}
 #icon_uploadUploader,#file_uploadUploader {background: transparent url('<?php echo plugins_url(); ?>/download-manager/images/browse.png') left top no-repeat; }
 #icon_uploadUploader:hover,#file_uploadUploader:hover {background-position: left bottom; }

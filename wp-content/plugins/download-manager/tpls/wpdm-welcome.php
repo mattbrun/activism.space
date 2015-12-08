@@ -3,7 +3,7 @@
 <script language="JavaScript" src="<?php echo plugins_url('/download-manager/bootstrap/js/bootstrap.min.js');?>" ></script>
 <script type="text/javascript" src="<?php echo plugins_url();?>/download-manager/js/jquery.form.js"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo plugins_url('/download-manager/bootstrap/css/bootstrap.css');?>" />
-<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100|Varela' rel='stylesheet' type='text/css'>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <style>
     .w3eden .lead,
@@ -12,6 +12,8 @@
         font-family: 'Roboto', sans-serif;
         font-weight: 100;
     }
+
+
 
     .r{
         font-family: 'Roboto', sans-serif;
@@ -210,6 +212,10 @@
         background-repeat: repeat-x;
     }
 
+.alert{
+    font-family: Varela;
+}
+
     #modalcontents .wrap h2{ display: none; }
 
 </style>
@@ -217,12 +223,12 @@
 <div class="wrap w3eden">
 
 
-    <div class="container" style="margin-top: 10px">
+    <div class="container" style="margin-top: 40px">
          <div class="row">
 
              <div class="col-md-12">
                  <div class="well text-center">
-                     <img src="<?php echo WPDM_BASE_URL; ?>images/wpdm-welcome.png" />
+                     <img src="<?php echo WPDM_BASE_URL; ?>images/wpdm-welcome.png" style="max-width: 100%" />
                  </div>
 
              </div>
@@ -330,47 +336,51 @@
                              There are more free add-ons
                          </div> </div>
                  </div>
+                 <div class="alert alert-info">
+                     <a href="http://www.wpdownloadmanager.com/download/verse-wordpress-theme-for-digital-shop/" target="_blank"><i class="fa fa-gift" style="margin-right: 7px"></i> Verse – Free WordPress Theme for Digital Shops, Get it now! </a>
+                 </div>
              </div>
+
 
              <div class="col-md-12 lead">
                  <h3>What's New?</h3>
-                 What new with WordPress Download Manager v2.7:
+                 What new with WordPress Download Manager v2.8:
              </div>
 
              <div class="col-md-4 r">
 
-                     <b>Custom Post Type</b>
-                     WordPress Download Manager 2.7 using custom post type now, so you can enjoy all build-in features of WordPress.
+                     <b>User Dashboard</b>
+                     WordPress Download Manager 2.8 comes with awesome user dashboard with users sign-in/sign-up & edit profile section.
 
              </div>
              <div class="col-md-4 r">
 
-                 <b>Add-On Support</b>
-                 Now you can use free or pro add-ons with WordPress Download Manager v2.7, earlier which were only available for wpdm pro.
+                 <b>Template Options</b>
+                 If you need to edit any template files, now you can create a dir named `download-manager` in your active theme folder and copy files from `tpls` dir there.
              </div>
 
              <div class="col-md-4 r">
 
-                 <b>Theme Support</b>
-                 As WordPress Download Manager 2.7 using custom post type now, you will not need any extra work to use it with any WordPress Theme.
+                 <b>Download History</b>
+                 Allow users to view their download history, the page is added in user profile menu under user dashboard.
              </div>
             
             <div class="col-md-12"><br style="clear:both"/><hr/>
-                 <h3>v2.7.95</h3>
-                 <p class="lead">What new with WordPress Download Manager v2.7.95:</p>
-                 <ul style="list-style:square !important">
-                     <li>Added new option for sanitizing file names to avoid illegal chars</li>
-                     <li>Fixed issue with open with browser option</li>
-                     <li>Fixed issue with file type icons selection for all files short-codet</li>
-                     <li>Fixed issue with order expiration check</li>
-                     <li>Fixed issue with purchased items access at front-end</li>
-                     <li>Added new option to recalculate total sales of a product</li>
+                 <h3>v2.8.3</h3>
+                 <p class="lead">There are also some other changes:</p>
+                 <ul style="list-style:square !important;margin-left:15px">
+                     <li>Fixed issue with tree view, added missing functions</li>
+                     <li>Compatibility released for WordPress v4.4</li>
+                     <li>Enabled category page</li>
+                     <li>Activated all features for Premium Package ( Guest Order, Guest Download, Order Notes, Save & Email Cart )</li>
                  </ul>
+                <br>
              </div>
 
+
+
              <div class="col-md-12 lead">
-                 <br/>
-                 <hr/><br/>
+
                  Lets start: Admin Menu <i class="fa fa-angle-double-right"></i> <a href="<?php echo admin_url('edit.php?post_type=wpdmpro'); ?>">Downloads</a> <i class="fa fa-angle-double-right"></i> <a href="<?php echo admin_url('post-new.php?post_type=wpdmpro'); ?>">Add New</a>
              </div>
 

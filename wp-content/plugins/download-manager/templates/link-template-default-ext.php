@@ -6,7 +6,7 @@
     <div class="media">
         <div class="pull-left">[icon]</div>
         <div class="media-body"><strong class="ptitle">[title]</strong>
-            [excerpt]
+            [description]
             <div><strong>[download_link_extended]</strong></div>
         </div>
     </div>

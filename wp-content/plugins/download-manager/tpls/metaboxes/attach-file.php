@@ -1,4 +1,4 @@
-<input type="hidden" name="file[files][]" value="<?php $afiles = maybe_unserialize(get_post_meta(get_the_ID(), "__wpdm_files", true)); echo $afiles[0]; ?>" id="wpdmfile" />
+<input type="hidden" name="file[files][]" value="<?php $afiles = maybe_unserialize(get_post_meta(get_the_ID(), "__wpdm_files", true)); echo is_array($afiles)&&isset($afiles[0])?$afiles[0]:''; ?>" id="wpdmfile" />
 <div class="cfile" id="cfl" style="padding: 10px;margin-bottom:10px;border:1px solid #ddd;background: #fafafa">
     <?php
     $filesize = "<em style='color: darkred'>( ".__("attached file is missing/deleted","wpdmpro")." )</em>";

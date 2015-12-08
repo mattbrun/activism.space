@@ -60,11 +60,11 @@ msgstr ""
 
 #: functions.php:18 functions.php:30 functions.php:814 functions.php:833
 #: list-files.php:79 list-files.php:92
-msgid "Documents"
+msgid "Downloads"
 msgstr ""
 
 #: functions.php:19
-msgid "Document"
+msgid "File"
 msgstr ""
 
 #: functions.php:20 list-files.php:28
@@ -72,15 +72,15 @@ msgid "Add New"
 msgstr ""
 
 #: functions.php:21
-msgid "Add New Document"
+msgid "Add New File"
 msgstr ""
 
 #: functions.php:22
-msgid "Edit Document"
+msgid "Edit File"
 msgstr ""
 
 #: functions.php:23
-msgid "New Document"
+msgid "New File"
 msgstr ""
 
 #: functions.php:24
@@ -88,7 +88,7 @@ msgid "All Files"
 msgstr ""
 
 #: functions.php:25
-msgid "View Document"
+msgid "View File"
 msgstr ""
 
 #: functions.php:26
@@ -96,7 +96,7 @@ msgid "Search Files"
 msgstr ""
 
 #: functions.php:27
-msgid "No Document Found"
+msgid "No File Found"
 msgstr ""
 
 #: functions.php:28
@@ -238,7 +238,7 @@ msgid " Reload link or page templates."
 msgstr ""
 
 #: functions.php:1336 functions.php:1579
-msgid "Document Settings"
+msgid "File Settings"
 msgstr ""
 
 #: functions.php:1337
@@ -264,13 +264,13 @@ msgid ""
 "one to download this package<br/>\n"
 "                                    <b>Link Template:</b> Shortcode will be "
 "rendered based on select link template.<br/>\n"
-"                                    <b>Page Template:</b> Document details page "
+"                                    <b>Page Template:</b> File details page "
 "will be rendered based on selected page template<br/>\n"
 "                                "
 msgstr ""
 
 #: functions.php:1580
-msgid "Attach Document"
+msgid "Attach File"
 msgstr ""
 
 #: functions.php:1581
@@ -368,11 +368,11 @@ msgid "Login Required Message:"
 msgstr ""
 
 #: settings/basic.php:56
-msgid "Server Document Browser"
+msgid "Server File Browser"
 msgstr ""
 
 #: settings/basic.php:60
-msgid "Server Document Browser Base Dir:"
+msgid "Server File Browser Base Dir:"
 msgstr ""
 
 #: settings/basic.php:64
@@ -380,7 +380,7 @@ msgid "Reset Base Dir"
 msgstr ""
 
 #: settings/basic.php:70
-msgid "Document Browser Access:"
+msgid "File Browser Access:"
 msgstr ""
 
 #: settings/basic.php:71
@@ -388,7 +388,7 @@ msgid "Who will have access to server file browser"
 msgstr ""
 
 #: settings/basic.php:103
-msgid "Document Download"
+msgid "File Download"
 msgstr ""
 
 #: settings/basic.php:107
@@ -402,7 +402,7 @@ msgid ""
 msgstr ""
 
 #: settings/basic.php:117
-msgid "Resumable Documents"
+msgid "Resumable Downloads"
 msgstr ""
 
 #: settings/basic.php:119 settings/basic.php:126

@@ -5,7 +5,7 @@
 [thumb_900x0]
 </div>
     <div class="col-md-12"><br/>
-<table class="table">
+<table class="table table-bordered">
 <tbody>
 <tr><td>Download</td><td>[download_count]</td></tr>
 <tr><td>Stock</td><td>[quota]</td></tr>
