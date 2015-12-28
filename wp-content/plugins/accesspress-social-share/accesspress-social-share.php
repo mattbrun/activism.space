@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) or die( "No script kiddies please!" );
   Plugin name: AccessPress Social Share
   Plugin URI: https://accesspressthemes.com/wordpress-plugins/accesspress-social-share/
   Description: A plugin to add various social media shares to a site with dynamic configuration options.
-  Version: 4.0.1
+  Version: 4.0.2
   Author: AccessPress Themes
   Author URI: http://accesspressthemes.com
   Text Domain: accesspress-social-share
@@ -30,7 +30,7 @@ if ( !defined( 'APSS_LANG_DIR' ) ) {
 }
 
 if ( !defined( 'APSS_VERSION' ) ) {
-	define( 'APSS_VERSION', '4.0.1' );
+	define( 'APSS_VERSION', '4.0.2' );
 }
 
 if ( !defined( 'APSS_TEXT_DOMAIN' ) ) {
@@ -73,7 +73,9 @@ if ( !class_exists( 'APSS_Class' ) ) {
 			add_action( 'admin_post_apss_restore_default_settings', array( $this, 'apss_restore_default_settings' ) ); //restores default settings.
 			add_action( 'admin_post_apss_clear_cache', array( $this, 'apss_clear_cache' ) ); //clear the cache of the social share counter.
 			add_shortcode( 'apss-share', array( $this, 'apss_shortcode' ) ); //adds a shortcode
+			add_shortcode( 'apss_share', array( $this, 'apss_shortcode' ) ); //added a new shortcode to remove the shortcode with hyphen in future
 			add_shortcode( 'apss-count', array( $this, 'apss_count_shortcode' ) ); //adds a share count shortcode
+			add_shortcode( 'apss_count', array( $this, 'apss_count_shortcode' ) ); //added a new shortcode to remove the shortcode with hyphen in future
 			add_action( 'add_meta_boxes', array( $this, 'social_meta_box' ) ); //for providing the option to disable the social share option in each frontend page
 			add_action( 'save_post', array( $this, 'save_meta_values' ) ); //function to save the post meta values of a plugin.
 

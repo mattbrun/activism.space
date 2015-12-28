@@ -3,8 +3,8 @@ Contributors: Access Keys
 Tags: social share counter, social share, social media share, social network share, social media, social network, share counter, social share count, social url share, social icons
 Donate link: http://accesspressthemes.com/donation/
 Requires at least: 3.8
-Tested up to: 4.3
-Stable tag: 4.0.1
+Tested up to: 4.4
+Stable tag: 4.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -131,6 +131,9 @@ Yes. You can use the AccessPress social share by using shortcode anywhere you wa
 6. Backend Miscellaneous Settings Section
 
 == Changelog ==
+= 4.0.2 =
+* Addition of the new shortcodes to replace apss-share to apss_share and apss-count to apss_count. Both shortcodes can be used but in the future updates will remove the shortcodes with hyphen as it is not recommened.
+
 = 4.0.1 =
 * Removal of the twitter share count as twitter depreceate the url share count.
 
