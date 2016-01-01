@@ -63,9 +63,6 @@ foreach ( $options['social_networks'] as $key => $value ) {
 							<i class='fa fa-twitter'></i>
 							<span class='apss-social-text'><?php _e( 'Share on Twitter', 'accesspress-social-share' ); ?></span><span class='apss-share'><?php _e( 'Tweet', 'accesspress-social-share' ); ?></span>
 						</div>
-						<?php /*  if ( isset( $counter_enable_options ) && $counter_enable_options == '1' ) { ?>
-							<div class='count apss-count' data-url='<?php echo $url; ?>' data-social-network='<?php echo $key; ?>' data-social-detail="<?php echo $url . '_' . $key; ?>"><?php echo $count; ?></div>
-						<?php } */ ?>
 					</a>
 				</div>
 				<?php
@@ -173,8 +170,7 @@ foreach ( $options['social_networks'] as $key => $value ) {
 			case 'print':
 				?>
 				<div class='apss-print apss-single-icon'>
-					<a rel='nofollow' title="<?php _e( 'Print', 'accesspress-social-share' ); ?>" href='javascript:void(0);' onclick='window.print();
-				            return false;'>
+					<a rel='nofollow' title="<?php _e( 'Print', 'accesspress-social-share' ); ?>" href='javascript:void(0);' onclick='window.print(); return false;'>
 						<div class='apss-icon-block clearfix'><i class='fa fa-print'></i>
 							<span class='apss-social-text'><?php _e( 'Print', 'accesspress-social-share' ); ?></span>
 							<span class='apss-share'><?php _e( 'Print', 'accesspress-social-share' ); ?></span>

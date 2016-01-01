@@ -91,7 +91,7 @@
 
 					<p><input type="checkbox" id="apss_front_page" value="front_page" name="apss_share_settings[share_options][]" <?php if ( in_array( "front_page", $options['share_options'] ) ) {
 	echo "checked='checked'";
-} ?> ><label for="apss_front_page"><?php _e( 'Front Page', 'accesspress-social-share' ); ?></label></p>		
+} ?> ><label for="apss_front_page"><?php _e( 'Front Page', 'accesspress-social-share' ); ?></label></p>
 					<p><input type="checkbox" id="apss_archives" value="archives" name="apss_share_settings[share_options][]" <?php if ( in_array( "archives", $options['share_options'] ) ) {
 	echo "checked='checked'";
 } ?> ><label for="apss_archives"><?php _e( 'Archives', 'accesspress-social-share' ); ?></label></p>
