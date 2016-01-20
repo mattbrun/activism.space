@@ -3,6 +3,7 @@
 $apss_link_open_option = ($options['dialog_box_options'] == '1') ? "_blank" : "";
 $twitter_user = $options['twitter_username'];
 $counter_enable_options = $options['counter_enable_options'];
+$twitter_api_use = $options['twitter_counter_api'];
 $icon_set_value = $options['social_icon_set'];
 $url = get_permalink(); //$this->curPageURL();
 $cache_period = ($options['cache_period'] != '') ? $options['cache_period'] * 60 * 60 : 24 * 60 * 60;
@@ -63,6 +64,9 @@ foreach ( $options['social_networks'] as $key => $value ) {
 							<i class='fa fa-twitter'></i>
 							<span class='apss-social-text'><?php _e( 'Share on Twitter', 'accesspress-social-share' ); ?></span><span class='apss-share'><?php _e( 'Tweet', 'accesspress-social-share' ); ?></span>
 						</div>
+						<?php if ( isset( $counter_enable_options ) && $counter_enable_options == '1' && $twitter_api_use !='1' ) { ?>
+							<div class='count apss-count' data-url='<?php echo $url; ?>' data-social-network='<?php echo $key; ?>' data-social-detail="<?php echo $url . '_' . $key; ?>"><?php echo $count; ?></div>
+						<?php } ?>
 					</a>
 				</div>
 				<?php

@@ -175,6 +175,31 @@
 } ?> /><label for="counter_enable_options_y"><?php _e( 'Yes', 'accesspress-social-share' ); ?></label></div>
 					</div>
 
+					<div class="apss-counter-api-options apss-counter-settings clearfix" style="<?php if(isset($options['counter_enable_options']) && $options['counter_enable_options'] == '1'){ echo 'display:block'; }else{ echo 'display:none'; } ?>">
+						<div class='apss-counter-api'>
+							<input type="radio" id='apss_twitter_counter_option' name="apss_share_settings[twitter_counter_api]" value="1" <?php if(isset($options['twitter_counter_api'])){ if($options['twitter_counter_api'] == '1') {
+							echo "checked='checked'";
+							} } ?> />
+							<label for="apss_twitter_counter_option"><?php _e( "Don't show Twitter share counts", 'accesspress-social-share' ); ?></label>
+							<div class="apss_notes_cache_settings"> Please select this option if you don't want to show twitter share counts.</div>
+						</div>
+
+						<div class='apss-counter-api'>
+							<input type="radio" id='apss_twitter_counter_option_1' name="apss_share_settings[twitter_counter_api]" value="2" <?php if(isset($options['twitter_counter_api'])){ if($options['twitter_counter_api'] == '2') {
+							echo "checked='checked'";
+							} } ?> />
+							<label for="apss_twitter_counter_option_1"><?php _e( 'Use', 'accesspress-social-share'); ?> <a href='http://newsharecounts.com' target='_blank'>NewShareCounts</a><?php _e( ' to show Twitter share counts', 'accesspress-social-share' ); ?></label>
+							<div class="apss_notes_cache_settings"> To use newsharecount public API, you have to enter your website url <?php echo site_url(); ?> and sign in using Twitter at their <a href='http://newsharecounts.com/' target='_blank'>website</a>.</div>
+						</div>
+
+						<div class='apss-counter-api'>
+							<input type="radio" id='apss_twitter_counter_option_2' name="apss_share_settings[twitter_counter_api]" value="3" <?php if(isset($options['twitter_counter_api'])){ if($options['twitter_counter_api'] == '3') {
+							echo "checked='checked'";
+							}} ?> /><label for="apss_twitter_counter_option_2"><?php _e( 'Use', 'accesspress-social-share'); ?> <a href='http://http://opensharecount.com/.com' target='_blank'>OpenShareCount</a><?php _e( ' to show Twitter share counts', 'accesspress-social-share' ); ?></label>
+							<div class="apss_notes_cache_settings"> To use opensharecount public API, you have to sign up and register your website url <?php echo site_url(); ?> at their <a href='http://opensharecount.com/' target='_blank'>website</a>. </div>
+						</div>
+					</div>
+
 					<div class="apss-total-counter-settings clearfix">
 						<h4><?php _e( 'Social share total counter enable?', 'accesspress-social-share' ); ?> </h4>
 						<div class="misc-opt"><input type="radio" id='total_counter_enable_options_n' name="apss_share_settings[total_counter_enable_options]" value="0" <?php if ( isset( $options['total_counter_enable_options'] ) && $options['total_counter_enable_options'] == '0' ) {

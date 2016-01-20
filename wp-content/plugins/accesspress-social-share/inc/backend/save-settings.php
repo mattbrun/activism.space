@@ -23,6 +23,7 @@ $apss_share_settings['disable_frontend_assets']			= isset( $_POST['apss_share_se
 $apss_share_settings['share_text']						= sanitize_text_field( $_POST['apss_share_settings']['share_text'] );
 $apss_share_settings['twitter_username']				= stripslashes_deep( $_POST['apss_share_settings']['twitter_username'] );
 $apss_share_settings['counter_enable_options']			= $_POST['apss_share_settings']['counter_enable_options'];
+$apss_share_settings['twitter_counter_api']				= $_POST['apss_share_settings']['twitter_counter_api'];
 $apss_share_settings['total_counter_enable_options']	= $_POST['apss_share_settings']['total_counter_enable_options'];
 $apss_share_settings['cache_period']					= is_numeric( $_POST['apss_share_settings']['cache_settings'] ) ? $_POST['apss_share_settings']['cache_settings'] : '24';
 $apss_share_settings['dialog_box_options']				= $_POST['apss_share_settings']['dialog_box_options'];

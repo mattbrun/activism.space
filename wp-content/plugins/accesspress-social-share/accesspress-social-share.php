@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) or die( "No script kiddies please!" );
   Plugin name: AccessPress Social Share
   Plugin URI: https://accesspressthemes.com/wordpress-plugins/accesspress-social-share/
   Description: A plugin to add various social media shares to a site with dynamic configuration options.
-  Version: 4.0.3
+  Version: 4.0.4
   Author: AccessPress Themes
   Author URI: http://accesspressthemes.com
   Text Domain: accesspress-social-share
@@ -30,7 +30,7 @@ if ( !defined( 'APSS_LANG_DIR' ) ) {
 }
 
 if ( !defined( 'APSS_VERSION' ) ) {
-	define( 'APSS_VERSION', '4.0.3' );
+	define( 'APSS_VERSION', '4.0.4' );
 }
 
 if ( !defined( 'APSS_TEXT_DOMAIN' ) ) {
@@ -418,7 +418,20 @@ if ( !class_exists( 'APSS_Class' ) ) {
 			//for setting the counter transient in separate options value
 			$apss_social_counts_transients = get_option( APSS_COUNT_TRANSIENTS );
 			if ( false === $twitter_transient_count ) {
-				$json_string    = $this->get_json_values( 'http://urls.api.twitter.com/1/urls/count.json?url=' . $url );
+				$api_selection = $apss_settings['twitter_counter_api'];
+
+				// $json_string    = $this->get_json_values( 'http://urls.api.twitter.com/1/urls/count.json?url=' . $url );
+
+				if($api_selection == '2'){
+					$json_string  = $this->get_json_values( 'http://public.newsharecounts.com/count.json?url=' . $url );
+
+				}else if($api_selection == '3'){
+					$json_string = $this->get_json_values( 'http://opensharecount.com/count.json?url=' . $url );
+
+				}else{
+					$json_string = $this->get_json_values( 'http://urls.api.twitter.com/1/urls/count.json?url=' . $url );
+				}
+				
 				$json           = json_decode( $json_string, true );
 				$tweet_count    = isset( $json['count'] ) ? intval( $json['count'] ) : 0;
 				set_transient( $twitter_transient, $tweet_count, $cache_period * HOUR_IN_SECONDS );
@@ -429,6 +442,14 @@ if ( !class_exists( 'APSS_Class' ) ) {
 			} else {
 				$tweet_count = $twitter_transient_count;
 			}
+
+			// $json_string = $this->get_json_values( 'http://opensharecount.com/count.json?url=' . $url );
+			// // $json_string  = $this->get_json_values( 'http://public.newsharecounts.com/count.json?url=' . $url );
+			// $json   = json_decode( $json_string, true );
+			// echo $json['count'];
+			// print_r($json);
+			// die();
+
 			return $tweet_count;
 		}
 
