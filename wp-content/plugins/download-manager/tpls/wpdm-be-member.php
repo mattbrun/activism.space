@@ -1,13 +1,11 @@
 <?php
 
-    $invoice = wpdm_query_var('invoice','txt')?wpdm_query_var('invoice','txt'):'';
-    if($invoice!=''){
-    $oorder = new Order();
-    $order = $oorder->GetOrder($invoice);
-    if($order->uid!=0) $invoice = '';
-    }
+    if(!isset($redirect)) $redirect = get_permalink(get_the_ID());
+    $redirect = isset($_GET['redirect_to']) ? $_GET['redirect_to'] : $redirect;
 
-    $redirect = isset($_GET['redirect_to']) ? $_GET['redirect_to'] : get_permalink(get_the_ID());
+    $log_redirect =  $_SERVER['REQUEST_URI'];
+    if(isset($params['redirect'])) $log_redirect = esc_url($params['redirect']);
+    if(isset($_GET['redirect_to'])) $log_redirect = esc_url($_GET['redirect_to']);
 ?>
 
 
@@ -40,7 +38,7 @@
                 <?php endif; ?>
                 <?php if(is_user_logged_in()){
 
-                    do_action("wpdm_user_logged_in","<div class='alert alert-success'>".__("You are already logged in.","wpdmpro")." <a href='".wp_logout_url()."'>".__("Logout","wpdmpro")."</a></div>");
+                    do_action("wpdm_user_logged_in","<div class='alert alert-success'>".__("You are already logged in.","wpdmpro")."<br style='clear:both;display:block;margin-top:5px'/> <a class='btn btn-xs btn-primary' href='".get_permalink(get_option('__wpdm_user_dashboard'))."'>".__("Go To Dashboard","wpdmpro")."</a>  <a class='btn btn-xs btn-danger' href='".wp_logout_url()."'>".__("Logout","wpdmpro")."</a></div>");
 
                 } else {
 
@@ -97,7 +95,7 @@
                                             $('#loginform').prepend("<div class='alert alert-danger'><b>Error!</b><br/>Login failed! Please re-check login info.</div>");
                                             $('#loginform-submit').html(llbl);
                                         } else {
-                                            location.href = "<?php echo $redirect; ?>";
+                                            location.href = "<?php echo $log_redirect; ?>";
                                         }
                                     }
                                 });
@@ -189,6 +187,11 @@
         background: #35ADF5 !important;
         box-shadow: none;
         outline: none !important;
+    }
+    .w3eden.be-member .tab-content{
+        padding: 10px 0 0 0;
+        border: 0;
+        background: transparent !important;
     }
 </style>
 <script>

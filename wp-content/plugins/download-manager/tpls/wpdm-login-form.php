@@ -5,7 +5,7 @@ if(isset($_GET['redirect_to'])) $redirect = $_GET['redirect_to'];
 
 if(is_user_logged_in()){
 
-    do_action("wpdm_user_logged_in","<div class='alert alert-success'>".__("You are already logged in.","wpdmpro")." <a href='".wp_logout_url()."'>".__("Logout","wpdmpro")."</a></div>");
+    do_action("wpdm_user_logged_in","<div class='alert alert-success'>".__("You are already logged in.","wpdmpro")."<br style='clear:both;display:block;margin-top:5px'/> <a class='btn btn-xs btn-primary' href='".get_permalink(get_option('__wpdm_user_dashboard'))."'>".__("Go To Dashboard","wpdmpro")."</a>  <a class='btn btn-xs btn-danger' href='".wp_logout_url()."'>".__("Logout","wpdmpro")."</a></div>");
 
 } else { ?>
 

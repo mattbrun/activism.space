@@ -1,7 +1,11 @@
 <?php if(!defined('ABSPATH')) die('!');
+
+$reg_redirect =  $_SERVER['REQUEST_URI'];
+if(isset($params['redirect'])) $reg_redirect = esc_url($params['redirect']);
+if(isset($_GET['redirect_to'])) $reg_redirect = esc_url($_GET['redirect_to']);
+
 if(get_option('users_can_register')){
 ?>
-<script language="JavaScript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
 
 <form method="post" action="" id="registerform" name="registerform" class="login-form">
 <input type="hidden" name="permalink" value="<?php the_permalink(); ?>" />
@@ -89,7 +93,7 @@ if(get_option('users_can_register')){
         jQuery(function ($) {
             var llbl = $('#registerform-submit').html();
             $('#registerform').submit(function () {
-                $('#registerform-submit').html("<i class='fa fa-spin fa-spinner'></i> Loggin In...");
+                $('#registerform-submit').html("<i class='fa fa-spin fa-spinner'></i> <?php __('Loggin In...','wpdmpro'); ?>");
                 $(this).ajaxSubmit({
                     success: function (res) {
                         if (!res.match(/success/)) {
@@ -97,7 +101,7 @@ if(get_option('users_can_register')){
                             $('#registerform').prepend("<div class='alert alert-danger'>"+res+"</div>");
                             $('#registerform-submit').html(llbl);
                         } else {
-                            location.href = "<?php echo $redirect; ?>";
+                            location.href = "<?php echo $reg_redirect; ?>";
                         }
                     }
                 });

@@ -1,5 +1,5 @@
 ﻿=== WordPress Download Manager ===
-Contributors: codename065, shahriar0822, tauhidul-alam
+Contributors: codename065, shahriar0822, shimo16ab, shafayat-alam, tauhidul-alam
 Donate link: 
 Tags: digital store, eshop, ecommerce, e-commerce, file management,  document management plugin, download manager, file manager, download monitor, download counter, password protection, download protection
 Requires at least: 3.4
@@ -25,10 +25,12 @@ It has easiest checkout option to give the user better experience in purchasing 
 *	Control who can access to download
 *       Download Speed Control
 *	Password protection
+*	CAPTCHA protection
 *	Download Counter
 *	Custom download link icon
 *	File type icon support
 *   Full Featured User Dashboard ( use short-code [wpdm_user_dashboard] )
+*   Custom oEmbed template
 *	DataTable support ( use short-code [wpdm-all-packages jstable=1 items_per_page=20] )
 *	Searching and Sorting Option
 *	Custom link label
@@ -129,6 +131,32 @@ Check download stats and get push notification when someone downloads, install:
 12. Invoice
 
 == Changelog ==
+
+= 2.8.9 =
+* Removed jquery.cookie.js file
+* Fixed issue with add-on update from Settings >> Updates tab
+
+= 2.8.8 =
+* Fixed SECURITY issue with update profile function ( Special Thanks to James Golovich )
+* Fixed "array-intersect" warning with server file browser option
+
+= 2.8.7 =
+* Fixed SECURITY issue with update file function
+* Fixed notice in class.Package.php
+* Fixed notices in Settings >> Updates tab
+* Fixed notices with dashboard widget
+
+= 2.8.6 =
+* Fixed issue with invalid functions ( license check )
+
+= 2.8.5 =
+* Fixed the "missing function" warning on plugin activation
+
+= 2.8.4 =
+* Added CAPTCHA lock
+* Improved UI
+* Added new link template
+* Improved Codebase
 
 = 2.8.3 =
 * Fixed issue with tree view, added missing functions
