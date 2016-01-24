@@ -56,7 +56,8 @@ class W3_GeneralActions extends W3_Plugin {
     function post_submitbox_start() {
         if (current_user_can('manage_options'))  {
             global $post;
-            echo '<div>', sprintf('<a href="%s">' . __('Purge from cache', 'w3-total-cache') . '</a>', wp_nonce_url(sprintf('admin.php?page=w3tc_dashboard&w3tc_flush_pgcache_purge_page&post_id=%d', $post->ID), 'w3tc')), '</div>';
+            //echo '<div>', sprintf('<a href="%s">' . __('Purge from cache', 'w3-total-cache') . '</a>', wp_nonce_url(sprintf('admin.php?page=w3tc_dashboard&w3tc_flush_pgcache_purge_page&post_id=%d', $post->ID), 'w3tc')), '</div>';
+            echo '';
         }
     }
 }
