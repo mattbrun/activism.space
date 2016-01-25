@@ -1,0 +1,1 @@
+<!--  --><span><strong>Latest release notes: </strong>This release contains some code improvements and slight bug fixes not visible to users. You can find more details in the Release Notes area of the plugin's </span><a href="http://www.iptanus.com/wordpress-plugins/wordpress-file-upload/">support page</a><span>.</span><!--  --><!--  -->
